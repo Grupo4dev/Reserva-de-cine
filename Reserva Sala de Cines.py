@@ -85,7 +85,6 @@ def guardar_datos(reservados):
         print(f"Error al guardar los datos: {e}")
 
 def menu_sala_de_cine():
-    fnt_limpiarpantalla()  # Limpiar pantalla antes de mostrar el menú
     print("\n" + "*" * 50)
     print("           *** Menú de la Sala de Cine ***")
     print("*" * 50 + "\n")
@@ -94,8 +93,9 @@ def menu_sala_de_cine():
         "1. Crear sala de cine",
         "2. Ver sala",
         "3. Reservar asiento",
-        "4. Cargar sala",
-        "5. Salir del programa"
+        "4. Cargar reservas",
+        "5. Guardar reservas",
+        "6. Salir del programa y guardar datos "
     ]
     
     for opc in opcs:
@@ -119,37 +119,30 @@ def main():
             sala = crear_sala_de_cine()
             input("Presione <<Enter>> para continuar")
         elif opcion == '2':
-            if not sala:
-                fnt_limpiarpantalla()
-                print("Primero debe crear la sala.")
-            else:
-                fnt_limpiarpantalla()
-                mostrar_sala(sala, reservados)
+            fnt_limpiarpantalla()
+            mostrar_sala(sala, reservados)
             input("Presione <<Enter>> para continuar")
         elif opcion == '3':
-            if not sala:
-                fnt_limpiarpantalla()
-                print("Primero debe crear la sala.")
-            else:
-                fnt_limpiarpantalla()
-                reservar_asiento(sala, reservados)
+            fnt_limpiarpantalla()
+            reservar_asiento(sala, reservados)
             input("Presione <<Enter>> para continuar")
         elif opcion == '4':
             fnt_limpiarpantalla()
             reservados = cargar_datos()
+            print("Reservas cargadas exitosamente.")
             input("Presione <<Enter>> para continuar")
         elif opcion == '5':
             fnt_limpiarpantalla()
             guardar_datos(reservados)
-            print("Gracias por usar el sistema de reservas.")
+            input("Presione <<Enter>> para continuar")
+        elif opcion == '6':
+            fnt_limpiarpantalla()
+            guardar_datos(reservados)
+            print("Saliendo del programa...")
             break
         else:
-            print("Opción no válida.")
+            print("Opción no válida. Intente de nuevo.")
             input("Presione <<Enter>> para continuar")
-    
-    print("\nAsientos reservados:")
-    for asiento, nombre in reservados.items():
-        print(f"Asiento {asiento} reservado a nombre de {nombre}.")
 
 if __name__ == "__main__":
     main()
